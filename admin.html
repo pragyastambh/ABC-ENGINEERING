@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ABC Engineering | Admin</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar"><div class="brand">ABC Engineering — ADMIN</div><button class="btn" onclick="logout()">Logout</button></header>
+<div class="layout">
+<aside class="sidebar">
+<button class="nav-btn active" data-screen="dashboard">Dashboard</button>
+<button class="nav-btn" data-screen="customers">Customers</button>
+<button class="nav-btn" data-screen="requirements">Requirements</button>
+<button class="nav-btn" data-screen="projects">Projects</button>
+<button class="nav-btn" data-screen="drawings">Drawings</button>
+<button class="nav-btn" data-screen="bom">BOM</button>
+<button class="nav-btn" data-screen="invoices">Invoices</button>
+<button class="nav-btn" data-screen="payments">Payments</button>
+<button class="nav-btn" data-screen="expenses">Expenses</button>
+<button class="nav-btn" data-screen="services">Services</button>
+<button class="nav-btn" data-screen="settings">Settings</button>
+</aside>
+
+<main class="content">
+<section id="dashboard" class="screen">
+<h1>Dashboard</h1>
+<div class="stats">
+<div class="stat"><span>Customers</span><strong id="statCustomers">0</strong></div>
+<div class="stat"><span>Active Projects</span><strong id="statProjects">0</strong></div>
+<div class="stat"><span>Pending Invoices</span><strong id="statInvoices">0</strong></div>
+<div class="stat"><span>Outstanding</span><strong id="statOutstanding">₹0</strong></div>
+</div>
+</section>
+
+<section id="customers" class="screen hidden">
+<h1>Customers</h1>
+<form id="customerForm" class="panel form-grid">
+<label>Customer Name<input id="cName" required></label>
+<label>Company<input id="cCompany"></label>
+<label>Email<input id="cEmail" type="email" required></label>
+<label>4-Digit Access Number<input id="cAccess" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" required></label>
+<label>Mobile<input id="cMobile"></label>
+<label>Status<select id="cStatus"><option>Active</option><option>Disabled</option></select></label>
+<div class="form-actions"><button class="btn btn-primary">SAVE CUSTOMER</button></div>
+</form>
+<div id="customerTable"></div>
+</section>
+
+<section id="requirements" class="screen hidden"><h1>Requirements</h1><div class="panel"><p>Add requirements through the project workflow. This starter screen is ready for the Apps Script API.</p></div></section>
+<section id="projects" class="screen hidden"><h1>Projects</h1><div class="panel"><p>Projects, equipment and customer access controls will be rendered here.</p></div></section>
+<section id="drawings" class="screen hidden">
+<h1>Drawings</h1>
+<form id="drawingForm" class="panel form-grid">
+<label>Customer<select id="dCustomer" required></select></label>
+<label>Project ID<input id="dProject" required></label>
+<label>Drawing Title<input id="dTitle" required></label>
+<label>Revision<input id="dRevision" value="R00" required></label>
+<label>Google Drive Link<input id="dDriveLink" type="url" required></label>
+<label>Customer Remarks<textarea id="dRemarks"></textarea></label>
+<div class="form-actions"><button class="btn btn-primary">ADD DRAWING</button></div>
+</form>
+<div id="drawingTable"></div>
+</section>
+
+<section id="bom" class="screen hidden">
+<h1>BOM</h1>
+<div class="panel"><p>Admin BOM includes cost, total cost, purchase status, vendor and internal remarks. Customer BOM will never receive those fields from the backend.</p></div>
+<div id="bomTable"></div>
+</section>
+
+<section id="invoices" class="screen hidden"><h1>Invoices</h1><div class="panel"><p>Invoice creation and one-page invoice search are handled through the locked invoice workflow.</p></div></section>
+<section id="payments" class="screen hidden"><h1>Payments</h1><div class="panel"><p>Record payment against an invoice. Balance and status are calculated by the backend.</p></div></section>
+<section id="expenses" class="screen hidden"><h1>Expenses</h1><div class="panel"><p>Date, category, amount and remarks.</p></div></section>
+
+<section id="services" class="screen hidden">
+<h1>Public Services</h1>
+<form id="serviceForm" class="panel form-grid">
+<label>Service Title<input id="sTitle" required></label>
+<label>Description<textarea id="sDescription" required></textarea></label>
+<label>Order<input id="sOrder" type="number" value="1"></label>
+<label>Status<select id="sStatus"><option>Show</option><option>Hide</option></select></label>
+<div class="form-actions"><button class="btn btn-primary">ADD SERVICE</button></div>
+</form>
+<div id="serviceTable"></div>
+</section>
+
+<section id="settings" class="screen hidden">
+<h1>Settings</h1>
+<form id="settingsForm" class="panel form-grid">
+<label>Business Name<input id="setBusiness" value="ABC Engineering"></label>
+<label>Communication Email<input id="setEmail" type="email"></label>
+<label>Sender Name<input id="setSender"></label>
+<label>Invoice Prefix<input id="setInvoicePrefix" value="INV"></label>
+<div class="form-actions"><button class="btn btn-primary">SAVE SETTINGS</button></div>
+</form>
+</section>
+</main></div>
+<script src="app.js"></script>
+<script>initAdmin();</script>
+</body>
+</html>
